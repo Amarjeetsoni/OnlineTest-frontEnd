@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
+*{
+    font-family: 'Balsamiq Sans', cursive;
+}
+
+body
+{  background-color: #a8ccfa;
+    background-image: linear-gradient(19deg, #a8ccfa 0%, #d6eff3 50%, #ffffff 100%);
+}

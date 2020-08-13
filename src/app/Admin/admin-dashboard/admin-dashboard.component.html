@@ -1,0 +1,113 @@
+
+<div class="toastb" *ngIf="showToastSuccess">
+    <div class="modal-header">
+        <p class="lead text-success font-weight-bold" *ngIf="success"> Success - {{success.header}}</p>
+        <button (click)="successToggle()" class="btn btn-transparent">
+            <i class="fas fa-times-circle text-success"></i>
+        </button>
+    </div>
+    <div class="modal-body text-success font-weight-bold" *ngIf="success">
+        <p class="blockquote">{{success.message}}</p>
+    </div>
+</div>
+<div>
+
+
+
+
+<nav class="navbar navbar-dark fixed-top flex-md-nowrap p-0 shadow" style="background-color: #76618b;">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/admin" style="background-color: #524361;">
+        <i class="fas fa-shopping-cart"></i> &nbsp;OnlineTest Admin
+    </a>
+    <ul class="navbar-nav px-3">
+        <li class="nav-item">
+            <span class="text-white">Admin &nbsp;<i class="fa fa-user" aria-hidden="true"></i></span>
+        </li>
+    </ul>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item main">
+                        <a class="nav-link" routerLink="/admin">
+                            <i class="fas fa-home"></i>&nbsp; Dashboard <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item main">
+                        <a class="nav-link main" data-toggle="collapse" href="#TestDetails" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa fa-users" aria-hidden="true"></i>&nbsp; Host A Test
+                        </a>
+                        <span class="collapse" id="TestDetails">
+                            <a class="nav-link main ml-4" routerLink="addTest">
+                                - &nbsp;Add A Test
+                            </a>
+                            <a class="nav-link main ml-4" routerLink="deleteTest">
+                                - &nbsp;Delete A Test 
+                            </a>
+                            <a class="nav-link main ml-4" routerLink="updateTest">
+                                - &nbsp;Update A Test
+                            </a>
+                        </span>
+                    </li>
+                    <li class="nav-item main">
+                        <a class="nav-link main" data-toggle="collapse" href="#QuestionDetails" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fas fa-pencil-alt"></i>&nbsp; Update Question Details
+
+                        </a>
+                        <span class="collapse" id="QuestionDetails">
+                            <a class="nav-link main ml-4" routerLink="addQuestion">
+                                - Add Question
+                            </a>
+                            <a class="nav-link main ml-4" routerLink="deleteQuestion">
+
+                                - Delete Question
+                            </a>
+                            <a class="nav-link main ml-4" routerLink="updateQuestion">
+                                - Update Question
+                            </a>
+                        </span>
+                    </li>
+
+                    <li class="nav-item main">
+                        <a class="nav-link main" data-toggle="collapse" routerLink="/admin/feedback" >
+                            <i class="fas fa-comments"></i>&nbsp; View All Feedback
+
+                        </a>
+                    </li>
+
+                    <li class="nav-item main">
+                        <a class="nav-link main" data-toggle="collapse" routerLink="/admin/topPerformer">
+                            <i class="fas fa-laptop-code"></i>&nbsp; Top Performer Analysis
+                        </a>
+
+                    </li>
+                    <li class="nav-item main">
+                        <a class="nav-link" routerLink="/admin/declareResult">
+                            <i class="fas fa-poll-h"></i>&nbsp; Declare Test Result
+                        </a>
+                    </li>
+                    <li class="nav-item main">
+                        <a class="nav-link" routerLink="" (click)="logOut()">
+                            <i class="fas fa-sign-out-alt" aria-hidden="true"></i>&nbsp; Log Out
+                        </a>
+                    </li>
+                    <br>
+                    <br>
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <p><i class="fas fa-calendar-alt"></i> &nbsp;{{todaysDate | date}}</p>
+                            <p><i class="fas fa-clock"></i> &nbsp;{{todaysDate | date:'h:mm:ss a'}}</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <router-outlet></router-outlet>
+        </main>
+    </div>
+</div>
