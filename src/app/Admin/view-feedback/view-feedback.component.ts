@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-view-feedback',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewFeedbackComponent implements OnInit {
 
-  constructor() { }
+  constructor() { } 
 
   ngOnInit() {
+  }
+
+  logInPage(){
+    swal("Good job!", "You clicked the button!", "success");
   }
 
 }
