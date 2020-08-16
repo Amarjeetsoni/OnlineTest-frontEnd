@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
@@ -15,9 +15,11 @@ import { UpdateQuestionComponent } from './update-question/update-question.compo
 import { ViewFeedbackComponent } from './view-feedback/view-feedback.component';
 import { TopPerformerComponent } from './top-performer/top-performer.component';
 import { DeclareResultComponent } from './declare-result/declare-result.component';
+import { TestFilterPipe } from './Pipe/test-filter.pipe';
+import { LoaderService } from './Services/loader.services';
 
 @NgModule({
-    declarations: [AdminDashboardComponent, StatisticsComponent, AddTestComponent, DeleteTestComponent, UpdateTestComponent, AddQuestionComponent, DeleteQuestionComponent, UpdateQuestionComponent, ViewFeedbackComponent, TopPerformerComponent, DeclareResultComponent],
+    declarations: [AdminDashboardComponent, StatisticsComponent, AddTestComponent, DeleteTestComponent, UpdateTestComponent, AddQuestionComponent, DeleteQuestionComponent, UpdateQuestionComponent, ViewFeedbackComponent, TopPerformerComponent, DeclareResultComponent, TestFilterPipe],
     imports: [
         CommonModule,
         AdminRoutingModule,
@@ -27,7 +29,8 @@ import { DeclareResultComponent } from './declare-result/declare-result.componen
     
       ]
       , providers:[
-        
+        DatePipe,
+        LoaderService
       ]
     })
 export class AdminModule { }
