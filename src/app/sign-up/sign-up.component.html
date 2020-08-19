@@ -1,1 +1,78 @@
-<p>sign-up works!</p>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<div class="container signup-container" style="align-items: center;">
+
+    <div class="row">
+        <div class="col-md-3 "></div>
+        <div class="col-md-6 signup-form-1">
+
+            <h3>User Registration</h3>
+            <form [formGroup]="addUserForm" (ngSubmit)="addUser()">
+
+                <div class="form-group row">
+                    
+                    <label for="username">username * </label>
+                    <input type="text" formControlName="username" placeholder="Enter username" class="form-control" [ngClass]="{ 'is-invalid': formFields.username.touched && formFields.username.errors }" />
+                    <div *ngIf="formFields.username.touched && formFields.username.errors" class="invalid-feedback">
+                        <div *ngIf="formFields.username.errors.required">username is required</div>
+                        <div *ngIf="formFields.username.errors.pattern">username must be of 8 characters and should start with a letter</div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="password">Password *</label>
+                    <input type="password" class="form-control" formControlName="password"placeholder="Enter Password"[ngClass]="{ 'is-invalid': formFields.password.touched && formFields.password.errors }" />
+                    <div *ngIf="formFields.password.touched && formFields.password.errors" class="invalid-feedback">
+                        <div *ngIf="formFields.password.errors.required">Password is required</div>
+                        <div *ngIf="formFields.password.errors.pattern">Password must be of 8 characters and can contain alphabets ,number and special characters like !,@,# Only</div>
+                    </div>
+
+                </div>
+
+
+
+
+
+                <div class="form-group row">
+                    <label for="email">Email * </label>
+                    <input type="text" class="form-control" formControlName="email" placeholder="Enter Email Id" [ngClass]="{ 'is-invalid': formFields.email.touched && formFields.email.errors }" />
+                    <div *ngIf="formFields.email.touched && formFields.email.errors" class="invalid-feedback">
+                        <div *ngIf="formFields.email.errors.required">Email Id is required</div>
+                        <div *ngIf="formFields.email.errors.pattern">Email Must be a Valid Email Address</div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div style="align-items: center;" class="text-center">
+                    <button class="btn btn-success">
+                        Submit</button>&nbsp; &nbsp;
+                    <button class="btn btn-danger " type="reset">Cancel</button>&nbsp; &nbsp;
+                </div><br>
+
+
+
+
+                <div class="form-group " >
+                    <p class="text-left">Already have an account? &nbsp;&nbsp;&nbsp;&nbsp;
+                      <a type="reset" routerLink="/login" class> Login </a></p>
+
+                </div>
+                <div *ngIf="errorFlag" class="text-center">
+                    <h4 style="color: rgb(182, 92, 104);">
+                        {{ message }}
+                    </h4>
+                </div>
+
+
+
+            </form>
+
+
+        </div>
+    </div>
+</div>

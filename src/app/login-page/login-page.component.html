@@ -1,1 +1,31 @@
-<p>login-page works!</p>
+<div class="d-flex container justify-content-around align-items-center vh-100">
+    <div class="card p-0 col-sm-6 shadow">
+        <div class="card-header">
+            <h4 class="card-title">Login</h4>
+        </div>
+        
+        <div class="card-body">
+            <form action="/login" method="post" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+                <div class="form-group">
+                    <label for="username">username</label>
+                    <input id="username" class="form-control"  type="text"  name="username" placeholder="Enter UserName" [(ngModel)]="user.username" pattern="[A-Za-z][A-Za-z0-9]{7,20}" #username=ngModel required>
+                </div>
+                <div class="alert alert-dark mt-3" *ngIf="username.invalid && (username.dirty || username.touched)" >
+                    Please enter valid UserName
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" class="form-control" type="password" name="password" placeholder="Enter Password" [(ngModel)]="user.password" pattern="[A-Za-z0-9!@#]{8,20}" #password=ngModel required>
+                </div>
+                <div class="alert alert-dark mt-3" *ngIf="password.invalid && (password.dirty || password.touched)" >
+                    Please enter your correct password
+                  </div>
+                <div class="form-group d-flex justify-content-end">
+                    <a href="/signup" class="text-uppercase btn btn-danger m-2">Signup</a>
+                    <input id="submit" class="text-uppercase btn btn-primary m-2" type="submit" value="Login" name="">
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    

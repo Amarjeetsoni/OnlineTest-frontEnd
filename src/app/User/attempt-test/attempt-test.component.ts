@@ -6,6 +6,7 @@ import { LoaderService } from '../Services/loader.services';
 import { DatePipe } from '@angular/common';
 import swal from 'sweetalert';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 
 @Component({
   selector: 'app-attempt-test',
@@ -15,14 +16,18 @@ import { Router } from '@angular/router';
 export class AttemptTestComponent implements OnInit {
 
   testDetails: TestDetails[];
+  userId: number;
 
-  constructor(private router: Router,private datepipe: DatePipe, private userService: UserServices, private loaderService:LoaderService) { 
-    this.userService.getAllTestAssignedToAUser(735).subscribe((data)=>{
+  constructor(private router: Router,private datepipe: DatePipe, private userService: UserServices, private loaderService:LoaderService,
+    private auth: AuthenticationService) { 
+      loaderService.show();
+    this.userService.getAllTestAssignedToAUser(this.auth.getUserid()).subscribe((data)=>{
+        this.userId  = this.auth.getUserid();
         this.testDetails = data;
         this.loaderService.hide();
     },
     (err)=>{
-      alert(err.error);
+      swal("User Is Not Registered in any Test.!");
       this.loaderService.hide();
     })
   }
@@ -52,7 +57,11 @@ export class AttemptTestComponent implements OnInit {
      +  test.testDuration + "\nTest Status: " + this.checkStatus(test.testStatus));
   }
 
-  
+  AttemptTest(test: any){
+    console.log(test);
+    let link = "attemptTest/" + this.userId + "/" + test.test_Id;
+    this.router.navigate([]).then(result=>{window.open(link, '_blank');});
+  }
   
 
 

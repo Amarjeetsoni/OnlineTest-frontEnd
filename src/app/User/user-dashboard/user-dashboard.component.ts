@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -9,8 +10,10 @@ import { Router } from '@angular/router';
 export class UserDashboardComponent implements OnInit {
 
   todaysDate = new Date();
- constructor(private router: Router) {
-   setInterval(() => {
+  userName:string;
+ constructor(private router: Router, private auth: AuthenticationService) {
+  this.userName =  this.auth.userName; 
+  setInterval(() => {
      this.todaysDate = new Date();
    }, 1000);
  }
@@ -20,7 +23,7 @@ export class UserDashboardComponent implements OnInit {
 
 
   logOut(){
-       this.router.navigate(['/home']);
+      this.auth.logout();
   }
 
 }

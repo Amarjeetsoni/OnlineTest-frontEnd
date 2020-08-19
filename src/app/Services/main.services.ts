@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { User } from '../Models/user';
 
 
 
@@ -28,6 +29,12 @@ export class MainService {
       console.log(submit);
       return this.http.post(this.url + "/Start/addFeedback", {"user_id": submit[0], "test_id": submit[1], "feedback": submit[2]}, { responseType: 'text' as 'json' });
 
+    }
+
+    public customerSignUp(user: User) {
+      return this.http.post("http://localhost:8082/signup", user, {
+        responseType: "text" as "json",
+      });
     }
 
 }

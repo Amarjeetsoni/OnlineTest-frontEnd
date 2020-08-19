@@ -6,6 +6,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { SubmitTest } from '../Models/SubmitTest';
+import { LoaderService } from '../admin/Services/loader.services';
+import { AuthenticationService } from '../Services/authentication.service';
 
 
 
@@ -37,13 +39,16 @@ export class AttemptTestComponent implements OnInit {
  answerStatus:number[] = [];
  value: number = 1;
  interval;
+ userName: string;
  test: any;
   constructor(@Inject(DOCUMENT) private document: any, private services: MainService, private router: Router, private route:ActivatedRoute
-  , private formBuilder: FormBuilder) { 
+  , private formBuilder: FormBuilder, private loaderService:LoaderService,  private auth: AuthenticationService) { 
     
-    
+    this.userName = this.auth.userName;
     this.route.params.subscribe(params=>{
         this.userId = params['userId'];
+        this.userId = this.auth.getUserid();
+        ;
         this.testId = params['testId'];
     })
     this.services.getTestByUserId(this.userId, this.testId).subscribe((data)=>{
@@ -62,6 +67,7 @@ export class AttemptTestComponent implements OnInit {
     (err)=>{
       console.log(err);
       swal(err.error.details, err.error.message, "warning");
+      this.step = 5;
       
     })
 
@@ -230,14 +236,16 @@ submitTestAnswerRefress(){
 }
 submitTestAnswersTimeOut(){
   if(this.step == 3){
+    this.loaderService.show();
   this.services.setTestAnswer([this.answer, this.testId, this.userId]).subscribe((data)=>{
+    this.loaderService.hide();
     swal("Time Out!!! \nTest Is Submitted...", "Helps Us To Improve... Give FeedBack", "success");
       this.step++;
  },
  (err)=>{
    console.log(err);
    swal(err.error.details, err.error.message, "warning");
-   
+   this.loaderService.hide();
  })
 }
 }
@@ -252,14 +260,16 @@ Review(){
   })
   .then((willDelete) => {
     if (willDelete) {
-    
+    this.loaderService.show();
     this.services.setTestAnswer([this.answer, this.testId, this.userId]).subscribe((data)=>{
       swal("Test Is Submitted...", "Helps Us To Improve... Give FeedBack", "success");
         this.step++;
+        this.loaderService.hide();
    },
    (err)=>{
      console.log(err);
      swal(err.error.details, err.error.message, "warning");
+     this.loaderService.hide();
      
    })
   

@@ -1,1 +1,40 @@
-<p>Savant delete-test works!</p>
+<br>
+<body>
+
+    <div style="text-align: center;">
+        <h3>View All Tests</h3>
+    </div>
+    <br>
+    <br>
+    
+    <table style="width: fit-content;" class="table table-hover table-info" align="center">
+        <thead>
+        <tr class="table-active">
+            <th>Test Id</th>
+            <th>Test Title</th>
+            <th>Total Marks</th>
+            <th>Test Duration</th>
+            <th>Total Question</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Delete</th>
+            <th>Update</th>
+            
+        </tr>
+    </thead>
+        <tr *ngFor="let test of allTests ; let i = index" class="table table-hover table-info">
+            <td>{{test.test_Id}}</td>
+            <td>{{test.testTitle | titlecase}}</td>
+            <td>{{test.testTotalMarks}}</td>
+            <td>{{test.testDuration}}</td>
+            <td>{{test.totalQuestion}}</td>
+            <td>{{test.startDate | date}}</td>
+            <td>{{test.endDate | date}}</td>
+            <td><a class="btn btn-danger" (click)="deleteTest(i)">Delete</a></td>
+            <td><a class="btn btn-primary" routerLink="/admin/updateTest" (click)="updateTest(i)">Update</a></td>
+            
+    
+        </tr>
+    
+    </table>
+    </body>

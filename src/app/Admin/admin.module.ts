@@ -18,8 +18,12 @@ import { DeclareResultComponent } from './declare-result/declare-result.componen
 import { TestFilterPipe } from './Pipe/test-filter.pipe';
 import { LoaderService } from './Services/loader.services';
 
+import { FilterAttemptedPipe } from './Pipe/filter-attempted.pipe';
+import { SearchPipe1 } from './Pipe/search.pipe1';
+import { SearchPipe } from './Pipe/search.pipe';
+
 @NgModule({
-    declarations: [AdminDashboardComponent, StatisticsComponent, AddTestComponent, DeleteTestComponent, UpdateTestComponent, AddQuestionComponent, DeleteQuestionComponent, UpdateQuestionComponent, ViewFeedbackComponent, TopPerformerComponent, DeclareResultComponent, TestFilterPipe],
+    declarations: [AdminDashboardComponent, StatisticsComponent, AddTestComponent, DeleteTestComponent, UpdateTestComponent, AddQuestionComponent, DeleteQuestionComponent, UpdateQuestionComponent, ViewFeedbackComponent, TopPerformerComponent, DeclareResultComponent, TestFilterPipe, SearchPipe1,SearchPipe, FilterAttemptedPipe],
     imports: [
         CommonModule,
         AdminRoutingModule,

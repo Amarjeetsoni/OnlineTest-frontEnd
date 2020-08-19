@@ -1,1 +1,45 @@
-<p>Hitesh declare-result works!</p>
+<div class="table-responsive{-sm|-md|-lg|-xl}">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-md">
+      <div class="navbar-nav">
+        <input class="form-control mr-2" type="search" placeholder="Search for a User name" 
+        aria-label="Search" style="width: 250px;" [(ngModel)]="searchText">
+  
+        <form class="form-inline">
+        <button class="btn btn-info" type="submit"><i class="fas fa-search" (click)="showFiltered()"></i></button>
+        <pre>         </pre>
+              <input type="checkbox" id="attempted" name="attempted" (click)="showAttempted()">
+              <label for="attempted" style="color: white; font-size: 18px;">Show only Attempted tests</label>        
+      </form>
+    </div>
+    </nav>
+    <ng-container *ngIf = "(userTest| search: searchText) as result">
+    <table class="table">
+      <caption>List of Tests</caption>
+      <thead>
+        <tr>
+          <th scope="col">User ID</th>
+          <th scope="col">Test ID</th>
+          <th scope="col">User Name</th>
+          <th scope="col">Test Name</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+     
+        <tr  *ngFor="let obj of result| filterAttempted: attemptedCheckBox"  >
+          <td>{{obj.user.userId}}</td>
+          <td>{{obj.test.test_Id}}</td>     
+          <td>{{obj.user.userName}}</td>     
+          <td>{{obj.test.testTitle}}</td>
+          
+          <td *ngIf="!obj.attempted">Not Attempted</td>
+          
+          <td *ngIf="!obj.declared && obj.attempted"><button class="btn btn-info" (click)="declareResult(obj.user_Test_Id)">
+                                    Declare Result<img src="../../../assets/Images/declare.png" height="15" width="15"></button>
+                                    </td>
+          <td *ngIf="obj.declared && obj.attempted">Declared</td>
+        </tr>
+      
+        </table>
+      </ng-container> 
+  </div>
+  

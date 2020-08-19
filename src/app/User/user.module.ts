@@ -12,9 +12,11 @@ import { ResultAnalysisComponent } from './result-analysis/result-analysis.compo
 import { ResultListComponent } from './result-list/result-list.component';
 import { LoaderService } from './Services/loader.services';
 import { FilterTestPipe } from './Pipe/filter-test.pipe';
+import { TestFilterPipe } from './Pipe/test-filter.pipe';
+
 
 @NgModule({
-    declarations: [UserDashboardComponent, StatisticsComponent, AttemptTestComponent, RegisterTestComponent, ResultAnalysisComponent, ResultListComponent, FilterTestPipe],
+    declarations: [UserDashboardComponent, StatisticsComponent, AttemptTestComponent, RegisterTestComponent, ResultAnalysisComponent, ResultListComponent, FilterTestPipe, TestFilterPipe],
     imports: [
         CommonModule,
         UserRoutingModule,

@@ -21,10 +21,10 @@ export class ViewFeedbackComponent implements OnInit {
     this.adminService.getAllTest().subscribe((data)=>{
       this.testDetails = data;
       this.loaderService.hide();
-      this.testDetails = this.testDetails.filter(t => (t.testStatus == -1));
+      this.testDetails = this.testDetails.filter(t => (t.testStatus != 1));
   },
   (err)=>{
-    alert(err.error);
+    swal("No Test is available!");
     this.loaderService.hide();
   })
  
@@ -54,7 +54,8 @@ export class ViewFeedbackComponent implements OnInit {
   }
 
   FeedbackTest(test: any){
-    this.adminService.getAllFeedbackByTestId(737).subscribe((data)=>{
+    
+    this.adminService.getAllFeedbackByTestId(test.test_Id).subscribe((data)=>{
       this.feedback = data;
       this.loaderService.hide();
       this.feedback.forEach(e=>(
@@ -66,7 +67,7 @@ export class ViewFeedbackComponent implements OnInit {
       this.finalMessage = "";
   },
   (err)=>{
-    alert(err.error);
+    swal("No Feedback available for this test!");
     this.loaderService.hide();
   })
   }

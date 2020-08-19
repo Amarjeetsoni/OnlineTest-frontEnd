@@ -1,1 +1,104 @@
-<p>Savant add-test works!</p>
+<div *ngIf = "step == 1">
+<body>
+    <br>
+    <br>
+<h2 style="text-align: center;"> Add Test</h2>
+<br>
+<form #formdata="ngForm" novalidate (ngSubmit)="addTest()">
+
+<table align="center">
+
+
+
+   <tr>
+    <input type="text" name="name" [(ngModel)]="test.testTitle" placeholder="Enter Test Title" class="form-control" #v1="ngModel" required>
+    <div class="alert alert-danger" role="alert" *ngIf="v1.invalid && v1.touched">Test Title Reqiuired</div>
+</tr>
+<br>
+
+<tr>
+    <input type="number" name="duration" [(ngModel)]="test.testDuration" placeholder="Enter Test Duration" class="form-control" #v2="ngModel" required pattern="[1-9][0-9]*">
+    <div class="alert alert-danger" role="alert" *ngIf="v2.invalid && v2.touched">Invalid Duration</div>
+
+</tr>
+<br>
+
+<tr>
+    <input type="number" name="totalMarks" [(ngModel)]="test.testTotalMarks" placeholder="Enter Total Marks " #v5="ngModel" class="form-control" required pattern="[1-9][0-9]*">
+   <div class="alert alert-danger" role="alert" *ngIf="v5.invalid && v5.touched">Invalid Total Marks</div>
+</tr>
+<br>
+
+<tr>
+    <input type="number" name="totalQuestion" [(ngModel)]="test.TotalQuestion" placeholder="Enter Total Question " #v6="ngModel" class="form-control" required pattern="[1-9][0-9]*">
+   <div class="alert alert-danger" role="alert" *ngIf="v6.invalid && v6.touched">Invalid Total Question</div>
+</tr>
+<br>
+
+<tr>
+    <input type="datetime-local" name="startDate" [(ngModel)]="test.startDate" placeholder="Enter Start Date" #v3="ngModel" class="form-control" required>
+   <div class="alert alert-danger" role="alert" *ngIf="v3.invalid && v3.touched">Invalid Start Date</div>
+</tr>
+<br>
+
+<tr>
+    <input type="datetime-local" name="endDate" [(ngModel)]="test.endDate" placeholder="Enter Test End Date" class="form-control" #v4="ngModel" required >
+    <div class="alert alert-danger" role="alert" *ngIf="v4.invalid && v4.touched">Invalid End Date</div>
+</tr>
+<br>
+<br>
+
+</table>
+
+<div style="text-align: center;">
+<input type="submit" name="button" class="btn btn-primary" [disabled] = "formdata.invalid">
+</div>
+
+</form>
+<br><br>
+</body>
+</div>
+<div *ngIf="step == 2">
+    <br>
+    <hr>
+    <h3 style="font-family: monospace;">Welcome To Add Question Step:</h3>
+    <hr>
+    <form [formGroup]="SelectOption">
+    <div class="inputField" style="margin-left: 60%;">
+        <select id="category" formControlName="category" class="categoryInput">
+            <option value="">All Question</option>
+            <option *ngFor='let category of allCategory' [value]="category.categoryId">{{category.name}}</option>
+        </select>
+        <button class="btn btn-success" (click)="filterData()" style="margin-left: 15%;">Filter Question</button>
+    </div>
+   </form>
+    <div class="row">
+    <div class="shadow-lg p-4 mb-5  rounded table-wrapper-scroll-y my-custom-scrollbar"
+    style="margin-top: 3%;margin-left: 12%;">
+   <table class="table table-striped table-responsive table-hover text-bold">
+    <thead style="background-color: #807191;">
+        <tr>
+            <th>QuestionTitle</th>
+            <th>Option1</th>
+            <th>Option2</th>
+            <th>Option3</th>
+            <th>Option4</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+         <tr *ngFor="let question of filteredQuestionList">
+            <td>{{question.questionTitle}}</td>
+            <td>{{question.questionOptions[0]}}</td>
+            <td>{{question.questionOptions[1]}}</td>
+            <td>{{question.questionOptions[2]}}</td>
+            <td>{{question.questionOptions[3]}}</td>
+            <td><button class="btn btn-primary" (click)="addQuestion(question)" *ngIf = "isDisabled == false">Add</button>
+             <td><button class="btn btn-danger" (click)="addQuestion(question)" *ngIf = "isDisabled" disabled>Wait..</button>    
+
+            </td>
+        </tr> 
+    </tbody>
+   </table>
+
+</div>

@@ -1,1 +1,97 @@
-<p> Shashwat top-performer works!</p>
+<div class="col top-level">
+    <!--Heading row-->
+    <div class="row card-row">
+        <h3 style="font-family: monospace;"> Top Performers</h3>
+    </div>
+
+    <!--Table row-->
+    <div class="row table-row">
+
+        <!--Table:Top 3 performers-->
+        <div class="shadow-lg p-4 mb-5  rounded table-wrapper-scroll-y my-custom-scrollbar" style="margin-top: 3%;">
+            <table class="table table-striped  table-hover text-bold">
+                <thead style="background-color: #807191;">
+                    <tr>
+                        <th colspan="3">Top 3 performers in test:</th>
+                        <th>
+                            <select [(ngModel)]="searchUser1">
+                                <option value="undefined" hidden default selected >Select a test...</option>
+                                <option value=""  selected>All test...</option>
+                                <option *ngFor="let test of testUserDetails1" [value]="test.test.testTitle">
+                                    {{test.test.testTitle}}</option>
+                            </select>
+                        </th>
+
+                    </tr>
+                </thead>
+                <ng-container *ngIf="(testUserDetails1 | searchtext:searchUser1:param[0]) as result">
+
+                    <thead style="background-color: #807191;">
+                        <tr>
+                            <th>User Name</th>
+                            <th>Total Marks</th>
+                            <th>Marks Obtained</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of testUserDetails1 | searchtext:searchUser1:param[0]">
+                            <td>{{user.user.userName}}</td>
+                            <td>{{user.test.testTotalMarks}}</td>
+                            <td>{{user.marksScored}}</td>
+                            <td>{{user.marksScored/user.test.testTotalMarks*100}}</td>
+
+                        </tr>
+                        <td *ngIf="result.length == 0" colspan="6">
+                            <h5 style="text-align: center; color: rgb(255, 110, 110);"> Sorry, No Test available with
+                                "{{searchUser1}}" name, Try for diffrent...! </h5>
+                        </td>
+                    </tbody>
+
+                </ng-container>
+            </table>
+        </div>
+
+        <!--Table: Students by average marks-->
+        <div class="shadow-lg p-4 mb-5  rounded table-wrapper-scroll-y my-custom-scrollbar" style="margin-top: 3%;">
+            <table class="table table-striped  table-hover text-bold">
+                <thead style="background-color: #807191;">
+                    <tr>
+                        <th colspan="3">Top 3 Students by average marks:</th>
+                        <!--
+                        <th>
+                            <input type="text" class="categoryInput" placeholder="Search..." [(ngModel)]="searchUser" />
+                        </th>
+
+                        -->
+                    </tr>
+                </thead>
+                <ng-container *ngIf="(avgMarksData) as result">
+
+                    <thead style="background-color: #807191;">
+                        <tr>
+                            <th>User Name</th>
+                            <th>Number of test</th>
+                            <th>Average marks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of avgMarksData">
+                            <td>{{data.userName}}</td>
+                            <td>{{data.count}}</td>
+                            <td>{{data.marks}}</td>
+                            
+
+                        </tr>
+                        <td *ngIf="result.length == 0" colspan="6">
+                            <h5 style="text-align: center; color: rgb(255, 110, 110);"> Sorry, No Test available with
+                                "{{searchUser2}}" name, Try for diffrent...! </h5>
+                        </td>
+                    </tbody>
+
+                </ng-container>
+            </table>
+        </div>
+
+    </div>
+</div>

@@ -1,1 +1,99 @@
-<p>Deepika update-question works!</p>
+<div class="container">
+    <h2 class="p-4 mx-4">Update Questions</h2>
+    <table class="col-md-10 mx-auto table table-striped table-hover table-bordered mt-4">
+      <tr>
+        
+        <th>Question ID : </th>
+        <th style="width:120% !important;">Question Title</th>
+        <th>Question Marks</th>
+        <th>Question Option</th>
+        <th>Question Answer</th>
+        <th>Category ID</th>
+        <th>Update</th>
+      </tr>
+      <tr *ngFor="let question of questions">
+        <td>{{question.questionId}}</td>
+        <td style="width:120% !important;">{{question.questionTitle}}</td>
+        <td>{{question.questionMarks}}</td>
+        <td>{{question.questionOptions}}
+          </td>
+        <td>{{question.questionAnswer}}</td>
+        <td>{{question.questionCategory.categoryId}}</td>
+  
+  
+        <!-- <td>{{question.obj.category}}</td> -->
+        <td><button type="button" class="btn btn-sm btn-success" (click)="updateQuestion1(question,questionOptions)" data-toggle="modal"
+            data-target="#exampleModalCenter">Update</button></td>
+      </tr>
+    </table>
+  </div>
+  
+  
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Update Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+  
+  
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="Question">Question :</label>
+              <input type="text" name="Question" [(ngModel)]="questionUpdate.questionTitle" class="form-control"
+                autocomplete="off" id="Question" required>
+            </div>
+            <div class="form-group">
+              <label for="QuestionMarks">Question Marks :</label>
+              <input type="text" name="Question Marks" [(ngModel)]="questionUpdate.questionMarks" class="form-control"
+                autocomplete="off" id="QuestionMarks" placeholder="Marks" required>
+            </div>
+            <div class="form-group">
+              <label for="optionA">Question Options A :</label>
+              <input type="text" name="optionA" [(ngModel)]="questionUpdate.optionA" class="form-control"
+                autocomplete="on" id="optionA" placeholder="optionA" required>
+            </div>
+            <div class="form-group">
+              <label for="optionB">Question Options B :</label>
+              <input type="text" name="optionB" [(ngModel)]="questionUpdate.optionB" class="form-control"
+                autocomplete="on" id="optionB" placeholder="optionB" required>
+            </div>
+            <div class="form-group">
+              <label for="optionC">Question Options C :</label>
+              <input type="text" name="optionC" [(ngModel)]="questionUpdate.optionC" class="form-control"
+                autocomplete="on" id="optionC" placeholder="optionC" required>
+            </div>
+            <div class="form-group">
+              <label for="optionD">Question Options D :</label>
+              <input type="text" name="optionD" [(ngModel)]="questionUpdate.optionD" class="form-control"
+                autocomplete="on" id="optionD" placeholder="optionD" required>
+            </div>
+          
+          
+            
+            
+  
+            <div class="form-group">
+              <label for="questionAnswer">Question Answer:</label>
+              <input type="text" name="questionAnswer" [(ngModel)]="questionUpdate.questionAnswer" class="form-control"
+                autocomplete="off" id="questionAnswer" placeholder="question Answer" required>
+            </div>
+            <div class="form-group">
+              <label for="questionCategory">Question Category:</label>
+              <input type="text" name="category_id" [(ngModel)]="questionUpdate.category_id" class="form-control"
+                autocomplete="off" id="category_id"   required>
+            </div>
+  
+  
+            <button type="submit" (click)="updateQuestion2()" class="btn btn-sm btn-block btn-success"
+              data-dismiss="modal">Submit</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-block btn-danger" data-dismiss="modal">Close</button>
+        </div>

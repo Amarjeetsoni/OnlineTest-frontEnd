@@ -1,1 +1,60 @@
-<p>Savant update-test works!</p>
+
+<body>
+    <br>
+    <br>
+<h2 style="text-align: center;"> Update test</h2>
+<br>
+<form #formdata="ngForm" novalidate (ngSubmit)="updateTest()">
+
+<table align="center">
+   
+   
+    <tr>
+        <input type="text" name="name" [(ngModel)]="test.testTitle" placeholder="Enter Test Title" class="form-control" #v1="ngModel" required>
+        <div class="alert alert-danger" role="alert" *ngIf="v1.invalid && v1.touched">Test Title Reqiuired</div>
+    </tr>
+    <br>
+    
+    <tr>
+        <input type="number" name="duration" [(ngModel)]="test.testDuration" placeholder="Enter Test Duration" class="form-control" #v2="ngModel" required pattern="[1-9][0-9]*">
+        <div class="alert alert-danger" role="alert" *ngIf="v2.invalid && v2.touched">Invalid Duration</div>
+    
+    </tr>
+    <br>
+    
+    <tr>
+        <input type="number" name="totalMarks" [(ngModel)]="test.testTotalMarks" placeholder="Enter Total Marks " #v5="ngModel" class="form-control" required pattern="[1-9][0-9]*">
+       <div class="alert alert-danger" role="alert" *ngIf="v5.invalid && v5.touched">Invalid Total Marks</div>
+    </tr>
+    <br>
+    
+    <tr>
+        <input type="number" name="totalQuestion" [(ngModel)]="test.totalQuestion" placeholder="Enter Total Question " #v6="ngModel" class="form-control" required pattern="[1-9][0-9]*">
+       <div class="alert alert-danger" role="alert" *ngIf="v6.invalid && v6.touched">Invalid Total Question</div>
+    </tr>
+    <br>
+    
+    <tr>
+        <input type="datetime-local" name="startDate" [(ngModel)]="test.startDate" placeholder="Enter Start Date" #v3="ngModel" class="form-control" required>
+       <div class="alert alert-danger" role="alert" *ngIf="v3.invalid && v3.touched">Invalid Start Date</div>
+    </tr>
+    <br>
+    
+    <tr>
+        <input type="datetime-local" name="endDate" [(ngModel)]="test.endDate" placeholder="Enter Test End Date" class="form-control" #v4="ngModel" required >
+        <div class="alert alert-danger" role="alert" *ngIf="v4.invalid && v4.touched">Invalid End Date</div>
+    </tr>
+    <br>
+    <br>
+    
+
+</table>
+
+<br>
+<div style="text-align: center;">
+<input type="submit" name="butt"  class="btn btn-primary" [disabled] = "formdata.invalid" >
+</div>
+
+</form>
+<br><br>
+</body>
