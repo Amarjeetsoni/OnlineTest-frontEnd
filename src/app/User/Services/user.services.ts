@@ -15,7 +15,7 @@ export class UserServices {
     }
 
     getRegisterInTest (userId:any, testId:any){
-      return this.http.get<any>(this.url + "/getResultModule/assignTest?testId=" + testId + "&userId=" + userId);
+      return this.http.get<any>(this.url + "/getResult/assignTest?testId=" + testId + "&userId=" + userId);
     }
 
     getAllTest(){

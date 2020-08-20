@@ -24,21 +24,28 @@ export class ResultAnalysisComponent implements OnInit {
 
   ngOnInit() {
     this.showDetails = false
-    this.resultService.getResultForUser(this.auth.getUserid()).subscribe(data => {
+    this.resultService.getResultForUser(this.auth.getUserid() ).subscribe(data => {
       this.userTest = data;
       console.log(this.userTest);
-      this.resultService.getQuestions(this.userTest[0].test.test_Id).subscribe(data => {
-        this.questions = data;
-        console.log(this.questions);
-
-      });
+    },err=>{
+      console.log(err.error);
+      alert("Problem while fetching the data:" + "\n message: "
+      + err.error.message + "\n details: " + err.error.details)
     });
   }
 
   showDetailedResults(obj: any) {
     this.detailedResult = obj
     // console.log(this.detailedResult.usertestAnswer);
-    
+    this.resultService.getQuestions(obj.test.test_Id).subscribe(data => {
+      this.questions = data;
+      console.log(this.questions);
+
+    },err=>{
+      console.log(err.error);
+      alert("Problem while fetching the data:" + "\n message: "
+      + err.error.message + "\n details: " + err.error.details)
+    });
     setTimeout(() => {
       this.showDetails = true                          
     }, 1000);
@@ -73,7 +80,11 @@ export class ResultAnalysisComponent implements OnInit {
           (<HTMLInputElement>document.getElementById("marks-"+this.categoryResult[i].category.name.toString())).value=this.temp2.toString()+"%";
         }
       }, 3000);
-    })
+    },err=>{
+      console.log(err.error);
+      alert("Problem while fetching the data:" + "\n message: "
+      + err.error.message + "\n details: " + err.error.details)
+    });
   }
 
   goBack(){
